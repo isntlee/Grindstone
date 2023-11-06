@@ -1,11 +1,8 @@
-import os
-os.system("")
-
 from player import Player
-from grid import GridPosition, Grid
+from grid import GridPosition, Grid, Style
 
 
-class Style():
+class Style:
     RED = '\033[31m'
     YELLOW = '\033[33m'
     WHITE = '\033[37m'
