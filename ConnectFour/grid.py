@@ -79,13 +79,3 @@ class Grid:
                 return True
 
         return False
-    
-
-class Style:
-    RED = '\033[31m'
-    YELLOW = '\033[33m'
-    WHITE = '\033[37m'
-
-    blank = '0 ' + WHITE
-    Y =  YELLOW + 'Y ' + WHITE
-    R =  RED + 'R ' + WHITE
