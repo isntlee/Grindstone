@@ -31,7 +31,6 @@ class Hand:
             self._score += 11 if self._score + 11 <= 21 else 1
         else:
             self._score += card.getValue()
-        print('Score: ', self._score)
 
     def getScore(self):
         return self._score

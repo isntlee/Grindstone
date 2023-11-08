@@ -40,7 +40,7 @@ class UserPlayer(Player):
     def makeMove(self):
         if self.getHand().getScore() > 21:
             return False
-        move = input('Draw card? [y/n] ')
+        move = input('\nDraw card? [y/n] ')
         return move == 'y'
     
 
