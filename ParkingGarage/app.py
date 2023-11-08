@@ -1,9 +1,9 @@
 import datetime
 import math
 
-from driver import Driver
-from garage import ParkingGarage
-from vehicle import Car, Limo, Truck
+from drivers import Driver
+from garages import ParkingGarage
+from vehicles import Car, Limo, Truck
 
 
 class ParkingSystem:
