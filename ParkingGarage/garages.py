@@ -22,12 +22,11 @@ class ParkingFloor:
         self._vehicle_map = {}
 
     def park_vehicle(self, vehicle):
-
-        ''' Function cycles through spots, iterating both left/right edges
-            Right edge is leading edge, it moves to gauge vehicle size
-            On fit, the spots (l,r+1) set as taken. Then added to vehicle map
         '''
-        
+        Function cycles through spots, iterating both left/right edges
+        Right edge is leading edge, it moves to gauge vehicle size
+        On fit, the spots range(l, r+1) are set as taken. Then added to vehicle map
+        '''
         size = vehicle.get_spot_size()
         l, r = 0, 0
         while r < len(self._spots):
