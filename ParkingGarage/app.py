@@ -10,7 +10,7 @@ class ParkingSystem:
     def __init__(self, parkingGarage, hourlyRate):
         self._parkingGarage = parkingGarage
         self._hourlyRate = hourlyRate
-        self._timeParked = {} # map driverId to time that they parked
+        self._timeParked = {}
 
     def park_vehicle(self, driver):
         currentHour = datetime.datetime.now().hour
