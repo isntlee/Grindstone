@@ -1,5 +1,5 @@
-from player import Player
-from grid import GridPosition, Grid
+from players import Player
+from grids import GridPosition, Grid
 
 
 class Style:
