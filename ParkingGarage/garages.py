@@ -1,3 +1,7 @@
+import datetime
+import math
+
+
 class ParkingGarage:
     def __init__(self, floor_count, spots_per_floor):
         self._parking_floors = [ParkingFloor(spots_per_floor) for _ in range(floor_count)]
@@ -51,3 +55,27 @@ class ParkingFloor:
 
     def get_vehicle_spots(self, vehicle):
         return self._vehicle_map.get(vehicle)
+
+
+class ParkingSystem:
+    def __init__(self, parkingGarage, hourlyRate):
+        self._parkingGarage = parkingGarage
+        self._hourlyRate = hourlyRate
+        self._timeParked = {}
+
+    def park_vehicle(self, driver):
+        currentHour = datetime.datetime.now().hour
+        isParked = self._parkingGarage.park_vehicle(driver.get_vehicle())
+        if isParked:
+            self._timeParked[driver.get_id()] = currentHour
+        return isParked
+    
+    def remove_vehicle(self, driver):
+        if driver.get_id() not in self._timeParked:
+            return False
+        currentHour = datetime.datetime.now().hour
+        timeParked = math.ceil(currentHour - self._timeParked[driver.get_id()])
+        driver.charge(timeParked * self._hourlyRate)
+
+        del self._timeParked[driver.get_id()]
+        return self._parkingGarage.remove_vehicle(driver.get_vehicle())

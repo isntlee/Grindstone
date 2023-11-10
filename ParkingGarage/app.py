@@ -1,34 +1,7 @@
-import datetime
-import math
-
 from drivers import Driver
-from garages import ParkingGarage
+from garages import ParkingGarage, ParkingSystem
 from vehicles import Car, Limo, Truck
-
-
-class ParkingSystem:
-    def __init__(self, parkingGarage, hourlyRate):
-        self._parkingGarage = parkingGarage
-        self._hourlyRate = hourlyRate
-        self._timeParked = {}
-
-    def park_vehicle(self, driver):
-        currentHour = datetime.datetime.now().hour
-        isParked = self._parkingGarage.park_vehicle(driver.get_vehicle())
-        if isParked:
-            self._timeParked[driver.get_id()] = currentHour
-        return isParked
-    
-    def remove_vehicle(self, driver):
-        if driver.get_id() not in self._timeParked:
-            return False
-        currentHour = datetime.datetime.now().hour
-        timeParked = math.ceil(currentHour - self._timeParked[driver.get_id()])
-        driver.charge(timeParked * self._hourlyRate)
-
-        del self._timeParked[driver.get_id()]
-        return self._parkingGarage.remove_vehicle(driver.get_vehicle())
-    
+  
 
 parkingGarage = ParkingGarage(3, 2)
 parkingSystem = ParkingSystem(parkingGarage, 5)
