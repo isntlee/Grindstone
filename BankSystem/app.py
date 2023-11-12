@@ -2,8 +2,8 @@ from accounts import AccountSystem
 from banks import Bank, BankEmployee
 
 
-bankSystem = AccountSystem([], [])
-bank = Bank([], bankSystem, 10000)
+accountSystem = AccountSystem([], [])
+bank = Bank([], accountSystem, 10000)
 
 branch1 = bank.add_branch('123 Main St', 1000)
 branch2 = bank.add_branch('456 Elm St', 1000)
@@ -22,6 +22,7 @@ branch1.deposit(customerId2, 200)
 branch2.deposit(customerId3, 300)
 
 branch1.withdraw(customerId1, 50)
+
 """ Possible Output:
     Teller 1 opened account 0
     Teller 2 opened account 1
