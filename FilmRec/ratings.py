@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class MovieRating(Enum):
     NOT_RATED = 0
     ONE = 1
