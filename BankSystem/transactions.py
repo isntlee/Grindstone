@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Transaction(ABC):
     def __init__(self, customerId, tellerId):
         self._customerId = customerId
@@ -24,6 +25,7 @@ class Deposit(Transaction):
     def get_transaction_description(self):
         return f'Teller {self.get_teller_id()} deposited {self._amount} to account {self.get_customer_id()}'
 
+
 class Withdrawal(Transaction):
     def __init__(self, customerId, tellerId, amount):
         super().__init__(customerId, tellerId)
@@ -31,6 +33,7 @@ class Withdrawal(Transaction):
 
     def get_transaction_description(self):
         return f'Teller {self.get_teller_id()} withdrew {self._amount} from account {self.get_customer_id()}'
+
 
 class OpenAccount(Transaction):
     def __init__(self, customerId, tellerId):

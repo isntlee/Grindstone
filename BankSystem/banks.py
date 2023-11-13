@@ -2,13 +2,13 @@ import random
 
 
 class Bank:
-    def __init__(self, branches, bank_system, total_cash):
+    def __init__(self, branches, account_system, total_cash):
         self._branches = branches
-        self._bank_system = bank_system
+        self._account_system = account_system
         self._total_cash = total_cash
 
     def add_branch(self, address, initial_funds):
-        branch = BankBranch(address, initial_funds, self._bank_system)
+        branch = BankBranch(address, initial_funds, self._account_system)
         self._branches.append(branch)
         return branch
 
@@ -18,15 +18,15 @@ class Bank:
             self._total_cash += cash_collected
 
     def print_transactions(self):
-        for transaction in self._bank_system.get_transactions():
+        for transaction in self._account_system.get_transactions():
             print(transaction.get_transaction_description())
 
 
 class BankBranch:
-    def __init__(self, address, cash_on_hand, bank_system):
+    def __init__(self, address, cash_on_hand, account_system):
         self._address = address
         self._cash_on_hand = cash_on_hand
-        self._bank_system = bank_system
+        self._account_system = account_system
         self._tellers = []
 
     def add_teller(self, teller):
@@ -40,13 +40,13 @@ class BankBranch:
         if not self._tellers:
             raise ValueError('Branch does not have any tellers')
         teller_id = self._get_available_teller()
-        return self._bank_system.open_account(customer_name, teller_id)
+        return self._account_system.open_account(customer_name, teller_id)
 
     def deposit(self, customer_id, amount):
         if not self._tellers:
             raise ValueError('Branch does not have any tellers')
         teller_id = self._get_available_teller()
-        self._bank_system.deposit(customer_id, teller_id, amount)
+        self._account_system.deposit(customer_id, teller_id, amount)
 
     def withdraw(self, customer_id, amount):
         if amount > self._cash_on_hand:
@@ -55,7 +55,7 @@ class BankBranch:
             raise ValueError('Branch does not have any tellers')
         self._cash_on_hand -= amount
         teller_id = self._get_available_teller()
-        self._bank_system.withdraw(customer_id, teller_id, amount)
+        self._account_system.withdraw(customer_id, teller_id, amount)
 
     def collect_cash(self, ratio):
         cash_to_collect = round(self._cash_on_hand * ratio)
