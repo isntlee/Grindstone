@@ -32,12 +32,10 @@ class AccountSystem:
         return self._transactions
 
     def open_account(self, customer_name, teller_id):
-        # Create account
         customerId = len(self.get_accounts())
         account = BankAccount(customerId, customer_name, 0)
         self._accounts.append(account)
 
-        # Log transaction
         transaction = OpenAccount(customerId, teller_id)
         self._transactions.append(transaction)
         return customerId
