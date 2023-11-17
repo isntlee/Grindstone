@@ -72,4 +72,3 @@ class BankEmployee:
 
     def get_id(self):
         return self._id
-
